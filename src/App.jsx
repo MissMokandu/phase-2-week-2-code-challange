@@ -2,18 +2,20 @@ import React, { useEffect, useState } from "react";
 import GoalList from "./components/GoalList";
 import GoalForm from "./components/GoalForm";
 import DepositForm from "./components/DepositForm";
-import GoalOverview from "./components/GoalOverview";
+import "./App.css";
+
+
 
 function App() {
   const [goals, setGoals] = useState([]);
 
   // Fetch goals from db.json on first load
-useEffect(() => {
-  fetch("http://localhost:3000/goals")
-    .then((res) => res.json())
-    .then((data) => setGoals(data))
-    .catch((err) => console.error("Error fetching goals:", err));
-}, []);
+  useEffect(() => {
+    fetch("http://localhost:3001/goals")
+      .then((res) => res.json())
+      .then((data) => setGoals(data))
+      .catch((err) => console.error("Error fetching goals:", err));
+  }, []);
 
   // Function to add a new goal
   function handleAddGoal(newGoal) {
@@ -35,7 +37,7 @@ useEffect(() => {
     <div className="App">
       <h1>Smart Goal Planner</h1>
 
-      <GoalOverview goals={goals} />
+   
 
       <GoalForm onAddGoal={handleAddGoal} />
 
